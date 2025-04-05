@@ -113,9 +113,6 @@ export async function POST(request: NextRequest) {
         'Content-Type': 'text/event-stream',
         'Cache-Control': 'no-cache',
         'Connection': 'keep-alive',
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'POST, OPTIONS',
-        'Access-Control-Allow-Headers': 'Content-Type, Authorization, content-type',
       },
     });
   } catch (error) {
@@ -132,13 +129,5 @@ export async function POST(request: NextRequest) {
 
 // Handle OPTIONS requests for CORS preflight
 export async function OPTIONS() {
-  return new Response(null, {
-    status: 204,
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'POST, OPTIONS',
-      'Access-Control-Allow-Headers': 'Content-Type, Authorization, content-type',
-      'Access-Control-Max-Age': '86400',
-    },
-  });
+  return new Response(null, { status: 204 });
 } 
