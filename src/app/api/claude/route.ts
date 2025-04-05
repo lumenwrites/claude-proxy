@@ -41,6 +41,9 @@ export async function POST(request: NextRequest) {
         status: 400,
         headers: {
           'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'GET,DELETE,PATCH,POST,PUT,OPTIONS',
+          'Access-Control-Allow-Headers': 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, content-type, Date, X-Api-Version, Authorization',
         },
       });
     }
@@ -113,6 +116,9 @@ export async function POST(request: NextRequest) {
         'Content-Type': 'text/event-stream',
         'Cache-Control': 'no-cache',
         'Connection': 'keep-alive',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET,DELETE,PATCH,POST,PUT,OPTIONS',
+        'Access-Control-Allow-Headers': 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, content-type, Date, X-Api-Version, Authorization',
       },
     });
   } catch (error) {
@@ -122,6 +128,9 @@ export async function POST(request: NextRequest) {
       status: 500,
       headers: {
         'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET,DELETE,PATCH,POST,PUT,OPTIONS',
+        'Access-Control-Allow-Headers': 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, content-type, Date, X-Api-Version, Authorization',
       },
     });
   }
@@ -129,5 +138,13 @@ export async function POST(request: NextRequest) {
 
 // Handle OPTIONS requests for CORS preflight
 export async function OPTIONS() {
-  return new Response(null, { status: 204 });
+  return new Response(null, {
+    status: 204,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET,DELETE,PATCH,POST,PUT,OPTIONS',
+      'Access-Control-Allow-Headers': 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, content-type, Date, X-Api-Version, Authorization',
+      'Access-Control-Max-Age': '86400',
+    },
+  });
 } 
